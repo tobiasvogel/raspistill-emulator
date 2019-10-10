@@ -24,12 +24,13 @@ if [ -f "/usr/bin/raspistill.vendor" ]; then
 fi
 
 
-## Move the original raspistill-executable out of the way
+## Move the original raspistill-executable out of the way and
+## prevent the change from being reverted by future updates
 
-mv -nv /usr/bin/raspistill /usr/bin/raspistill.vendor
+dpkg-divert --add --rename --divert /usr/bin/raspistill.vendor /usr/bin/raspistill
 
 
-## Make sure the raspistill-executable was moved away
+## Make sure the raspistill-executable has been moved away 
 
 if [ -f /usr/bin/raspistill ]; then
 
@@ -47,11 +48,6 @@ update-alternatives --install /usr/bin/raspistill raspistill /usr/bin/raspistill
 update-alternatives --install /usr/bin/raspistill raspistill /usr/bin/raspistill.emulator 1000
 
 update-alternatives --set raspistill /usr/bin/raspistill.emulator
-
-
-## Prevent the 'Alternative' from being overwritten by upgrades
-
-dpkg-divert --add --rename --divert /usr/bin/raspistill.vendor /usr/bin/raspistill
 
 
 
