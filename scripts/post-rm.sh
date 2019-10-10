@@ -3,7 +3,7 @@
 
 ## Make sure we are running as root
 
-if [ ! "xʼid -uʼ" == "x0" ]; then
+if [ ! "x`id -u`" == "x0" ]; then
 
   echo "This script needs to be run as root user!" 1>&2
 
