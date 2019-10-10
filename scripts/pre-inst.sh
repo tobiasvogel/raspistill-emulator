@@ -48,4 +48,11 @@ update-alternatives --install /usr/bin/raspistill raspistill /usr/bin/raspistill
 
 update-alternatives --set raspistill /usr/bin/raspistill.emulator
 
+
+## Prevent the 'Alternative' from being overwritten by upgrades
+
+dpkg-divert --add --rename --divert /usr/bin/raspistill.vendor /usr/bin/raspistill
+
+
+
 exit 0
