@@ -16,6 +16,7 @@ It serves Images from a folder as if they were coming from a actual camera, whil
  - Random selection of images from folder as configured [WIP]
  - Maintain delay as specified by the "--timeout" option [WIP]
  - Outputting in the image (compression) format as specified by the "--encoding" option [WIP]
+ - Applying random image defects like blur, noise, speckles
  - Relaying any arbitrary input stream as if coming from the camera [PLANNED]
  - Honoring exposure/brightness/contrast/iso/shutter settings [PLANNED]
  - ...
