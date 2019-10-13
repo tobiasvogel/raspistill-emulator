@@ -4,7 +4,7 @@
 #include "INIReader.h"
 #include "optionparser.h"
 #include "structs.h"
-
+#include "../config.h"
 
 void print_usage() {
 
@@ -16,16 +16,16 @@ void print_usage() {
 	printf( "-d, -demo\t\tRun a demo mode (cycle through range of camera options, no capture)\n");
 	printf( "-e, -encoding\t\tEncoding to use for output file (jpg, bmp, gif, png)\n");
 	printf( "-x, -exif\t\tEXIF tag to apply to captures (format as 'key=value') or none\n");
-	printf( "-tl, -timelapse\t\tTimelapse mode. Takes a picture every <t>ms. \%d == frame number (Try: -o img_\%04d.jpg)\n");
+	printf( "-tl, -timelapse\t\tTimelapse mode. Takes a picture every <t>ms. %%d == frame number (Try: -o img_%%04d.jpg)\n");
 	printf( "-fp, -fullpreview\t\tRun the preview using the still capture resolution (may reduce preview fps)\n");
 	printf( "-k, -keypress\t\tWait between captures for a ENTER, X then ENTER to exit\n");
 	printf( "-s, -signal\t\tWait between captures for a SIGUSR1 or SIGUSR2 from another process\n");
 	printf( "-g, -gl\t\tDraw preview to texture instead of using video render component\n");
 	printf( "-gc, -glcapture\t\tCapture the GL frame-buffer instead of the camera image\n");
 	printf( "-bm, -burst\t\tEnable 'burst capture mode'\n");
-	printf( "-dt, -datetime\t\tReplace output pattern (\%d) with DateTime (MonthDayHourMinSec)\n");
-	printf( "-ts, -timestamp\t\tReplace output pattern (\%d) with unix timestamp (seconds since 1970)\n");
-	printf( "-fs, -framestart\t\tStarting frame number in output pattern(\%d)\n");
+	printf( "-dt, -datetime\t\tReplace output pattern (%%d) with DateTime (MonthDayHourMinSec)\n");
+	printf( "-ts, -timestamp\t\tReplace output pattern (%%d) with unix timestamp (seconds since 1970)\n");
+	printf( "-fs, -framestart\t\tStarting frame number in output pattern(%%d)\n");
 	printf( "-rs, -restart\t\tJPEG Restart interval (default of 0 for none)\n");
 
 	return;
@@ -37,8 +37,6 @@ int main(int argc, char *argv[]) {
   clock_t t = clock();
 
   unsigned long int timeout = 0;
-
-  //print_usage();
 
   config_t configuration;
 

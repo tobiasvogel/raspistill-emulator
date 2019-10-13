@@ -1,9 +1,11 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include <string.h>
 #include <stdbool.h>
 
 typedef uint8_t byte;
+typedef int8_t sbyte;
 
 struct rgb_color_struct {
 	char hex[8];
@@ -48,9 +50,12 @@ struct overlay_struct {
 typedef struct overlay_struct overlay_t;
 
 struct config_struct {
-	char *imagepath;
-	char *svgpath;
-	char *pngpath;
+
+	// general
+
+	std::string imagepath;
+	std::string svgpath;
+	std::string pngpath;
 
 	selection_t imageSelection;
 
@@ -68,6 +73,8 @@ struct config_struct {
 	bool yflip;
 
 	signed int rotation;
+
+	// effects
 
 	struct blur_effect_struct {
 
@@ -99,7 +106,7 @@ struct config_struct {
 
 		bool enabled;
 		bool persistentMap;
-		char *mapPath;
+		std::string mapPath;
 		rgba_color_t color;
 		byte amount;
 		byte randomness;
@@ -115,6 +122,22 @@ struct config_struct {
 		byte randomness;
 
 	} noiseEffect;
+
+	// sensor parameter
+
+	struct sensor_parameter_struct {
+		
+		sbyte sharpness;
+		sbyte contrast;
+		sbyte saturation;
+		byte brightness;
+		unsigned int iso;
+		unsigned int ev;
+		unsigned long int shutter;
+		float analogGain;
+		float digitalGain;
+
+	} sensorParameter;
 
 };
 
